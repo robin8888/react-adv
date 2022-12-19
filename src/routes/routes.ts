@@ -1,4 +1,6 @@
 import { lazy, LazyExoticComponent } from "react";
+import {RegisterPage, FormikAbstract, FormikBasicPage, FormikComponents, FormikYupPage} from '../03-forms/pages';
+
 
 type JSXComponent = () => JSX.Element
 export interface Route {
@@ -7,13 +9,17 @@ export interface Route {
   name: string;
   Component: LazyExoticComponent<JSXComponent> | JSXComponent;
 }
-const Lazy1 = lazy(() => import(/* webpackChunkName:"Lazy1" */ "../01-lazyLoad/pages/LazyLoad1"))
 const Lazy2 = lazy(() => import(/* webpackChunkName:"Lazy2" */ "../01-lazyLoad/pages/LazyLoad2"))
 const Lazy3 = lazy(() => import(/* webpackChunkName:"Lazy3" */ "../01-lazyLoad/pages/LazyLoad3"))
 
 export const routes: Route[] = [
-  { to: "/lazyLoad1", path: "lazyLoad1",name: "lazyLoad1", Component: Lazy1 },
-  { to: "/lazyLoad2", path: "lazyLoad2", name: "lazyLoad2", Component: Lazy2 },
-  { to: "/lazyLoad3", path: "lazyLoad3", name: "lazyLoad3", Component: Lazy3 },
+  {to:"/register", path: "register", name: "register", Component: RegisterPage},
+  { to: "/formik-basic", path: "formik-basic",name: "Formik Basic", Component: FormikBasicPage },
+  { to: "/formik-yup", path: "formik-yup",name: "Formik Yup", Component: FormikYupPage },
+  { to: "/formik-components", path: "formik-components",name: "Formik Components", Component: FormikComponents },
+  { to: "/formik-abstract", path: "formik-abstract",name: "Formik Abstract", Component: FormikAbstract },
+
+  { to: "/lazyLoad2", path: "lazyLoad2", name: "About", Component: Lazy2 },
+  { to: "/lazyLoad3", path: "lazyLoad3", name: "Users", Component: Lazy3 },
 ];
 
